@@ -1,5 +1,5 @@
 esphome:
-  name: esphome-web-df88a5
+  name: Sensor
   friendly_name: Motion Sensor
 
 esp8266:

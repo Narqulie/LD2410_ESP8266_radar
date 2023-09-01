@@ -26,53 +26,19 @@ Data Logging: For those interested in analytics, the motion data can be logged o
 
 ![ESP-Home yaml](/images/code.png)
 
-## Code Setup
-
 ##### The YAML code for this project is available in the `esphome-web-df88a5.yaml` file.
 
 This configuration provides the essential setup for integrating an LD2410 motion sensor with an ESP8266-based NodeMCU board.
 
-### Main Configuration
-- **Device Name**: esphome-web-df88a5
-- **Friendly Name**: Lavatory2
-- **Board**: NodeMCU v2 (ESP8266 chipset)
+### Basic configuration: 
 
-### Logging
-- **Baud Rate**: Disabled to allow for the use of UART.
+The main takeaways from the code are as follows:
+The LD2410 is connected to the NodeMCU via UART. The TX and RX pins are connected to the D7 and D8 pins on the NodeMCU respectively. The Baud-rate is set to 256,000. This is very specific for the sensor.
 
-### Home Assistant API
-- **Encryption Key**: Provided (for security reasons).
+### Sensor configuration:
 
-### OTA (Over-The-Air) Updates
-- Enabled for wireless firmware updates.
-
-### UART Configuration
-- **RX Pin**: GPIO13 (labeled as D7 on NodeMCU)
-- **TX Pin**: GPIO15 (labeled as D8 on NodeMCU)
-- **Baud Rate**: 256,000
-
-### LD2410 Motion Sensor
-- **UART ID**: uart_1
-- **Timeout**: 5 seconds
-- **Distances**:
-  - **Max Move Distance**: 1.5 meters
-  - **Max Still Distance**: 0.75 meters
-- **Gate Thresholds**: Configured from g0 to g2 for both move and still states.
-
-### Binary Sensor
-- **Platform**: LD2410
-- **Sensor**: Presence
-- **Filter**: A delay of 10 seconds to prevent false negatives.
-
-### Wi-Fi
-- **SSID and Password**: Stored in secrets file for security.
-  
-### Fallback Hotspot
-- **SSID**: Esphome-Web-Df88A5
-- **Password**: Provided
-
-### Captive Portal
-- Enabled to assist in setup and troubleshooting.
+The max move distance is set to 1.5 meters, and the max still distance is set to 0.75 meters. These values are used to differentiate between a moving target and a still one. the Gate Threshold-values are set for three gates, 0-2. These need to be set for both the move and still states. These values will need to be adjusted for your specific use-case. The values are in meters.
+A filter of 10 seconds is used to prevent false negatives. This is the time the sensor needs to be still before it will report a still state.
 
 ---
 

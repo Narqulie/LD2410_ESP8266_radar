@@ -1,5 +1,7 @@
 # ESP-Home motion detection with an LD2410
 
+![ESP-Home motion detection with an LD2410](/images/cover.jpeg)
+
 ## Overview
 
 The ESPHome LD2410 Motion Detection project provides a comprehensive solution for those looking to integrate advanced motion detection capabilities into their smart homes or any other relevant applications. By utilizing the LD2410 sensor in tandem with the versatile NodeMCU platform, this project offers an innovative and efficient approach to track and differentiate between varying types of motion within a specified area.

@@ -20,20 +20,65 @@ Data Logging: For those interested in analytics, the motion data can be logged o
 
 ## Wiring and setup
 
-### Wiring Diagram for NodeMCU and LD2410:
-#### Components:
-NodeMCU (ESP8266 based)
-LD2410 Motion Sensor
-#### Connections:
-##### Power:
-Connect the VCC pin of the LD2410 to the 3.3V pin on the NodeMCU.
-Connect the GND pin of the LD2410 to any GND pin on the NodeMCU.
-##### UART Communication:
-Connect the TX pin of the LD2410 to the RX (GPIO3) pin on the NodeMCU.
-Connect the RX pin of the LD2410 to the TX (GPIO1) pin on the NodeMCU.
+### Code Setup:
 
-##### Notes:
-Ensure that you're powering the LD2410 with the appropriate voltage. If the LD2410 requires 5V, you might need an external power source or a voltage regulator if your NodeMCU only provides 3.3V.
-Avoid long wires to minimize potential interference.
-Ensure all connections are secure and no pins are shorting.
-Always power off the circuit when making changes to avoid potential damage.
+![ESP-Home yaml](/images/code.png)
+
+## Code Setup
+
+##### The YAML code for this project is available in the `esphome-web-df88a5.yaml` file.
+
+This configuration provides the essential setup for integrating an LD2410 motion sensor with an ESP8266-based NodeMCU board.
+
+### Main Configuration
+- **Device Name**: esphome-web-df88a5
+- **Friendly Name**: Lavatory2
+- **Board**: NodeMCU v2 (ESP8266 chipset)
+
+### Logging
+- **Baud Rate**: Disabled to allow for the use of UART.
+
+### Home Assistant API
+- **Encryption Key**: Provided (for security reasons).
+
+### OTA (Over-The-Air) Updates
+- Enabled for wireless firmware updates.
+
+### UART Configuration
+- **RX Pin**: GPIO13 (labeled as D7 on NodeMCU)
+- **TX Pin**: GPIO15 (labeled as D8 on NodeMCU)
+- **Baud Rate**: 256,000
+
+### LD2410 Motion Sensor
+- **UART ID**: uart_1
+- **Timeout**: 5 seconds
+- **Distances**:
+  - **Max Move Distance**: 1.5 meters
+  - **Max Still Distance**: 0.75 meters
+- **Gate Thresholds**: Configured from g0 to g2 for both move and still states.
+
+### Binary Sensor
+- **Platform**: LD2410
+- **Sensor**: Presence
+- **Filter**: A delay of 10 seconds to prevent false negatives.
+
+### Wi-Fi
+- **SSID and Password**: Stored in secrets file for security.
+  
+### Fallback Hotspot
+- **SSID**: Esphome-Web-Df88A5
+- **Password**: Provided
+
+### Captive Portal
+- Enabled to assist in setup and troubleshooting.
+
+---
+
+When integrating this code into your device, ensure to keep all sensitive details, such as Wi-Fi credentials and encryption keys, private. Use the secrets mechanism (`!secret`) in ESPHome to manage this.
+
+## 3D printed enclosure
+![3D printed enclosure](/images/enclosure.png)
+
+A 3D Printed enclosure to house the ESP8266 and the LD2410. Find a .3mf file in the "enclosure" folder.
+The MCU in mounted on the bottom of the enclosure and the radar sensor is glued into the lid. A dab of superglue doesn't seem to hinder it's operation on the slightest, and the lid can be removed if needed and snaps on securely. The enclosure is designed to be mounted on a wall with a command strip or similar. 
+There are holes for passthrough of the USB cable, as well as holes for other possible sensors to be wired outside the enclosure. 

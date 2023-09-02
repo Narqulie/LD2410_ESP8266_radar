@@ -26,7 +26,7 @@ Data Logging: For those interested in analytics, the motion data can be logged o
 
 ![ESP-Home yaml](/images/code.png)
 
-##### The YAML code for this project is available in the `esphome-web-df88a5.yaml` file.
+##### The YAML code for this project is available in the `esphome-ld2410.yaml` file.
 
 This configuration provides the essential setup for integrating an LD2410 motion sensor with an ESP8266-based NodeMCU board.
 
